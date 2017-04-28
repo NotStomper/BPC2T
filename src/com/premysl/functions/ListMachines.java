@@ -10,7 +10,7 @@ public class ListMachines extends Function {
     @Override
     public void run() {
         for (Machine machine : factory.getMachineList()) {
-            out.println(" - " + machine.getName() + "(typ " + machine.getMachineType() + ")");
+            out.println(" - " + machine.getName() + " (typ " + machine.getMachineType() + ")");
         }
     }
 }

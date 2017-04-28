@@ -19,23 +19,24 @@ public class RepairMachine extends Function {
 
     @Override
     public void run() {
-        Machine machine = factory.getMachineByName(name);
+        int i = 0;
+        boolean done = false;
 
-        if (machine instanceof IBreakable && !((IBreakable) machine).IsBroken()) {
-            int i = 0;
-            for (Machine value : factory.getMachineList()) {
-                if (Objects.equals(value.getName(), machine.getName())) {
-                    ((IBreakable) factory.getMachineList().get(i)).repair();
-                    break;
-                }
+        for (Machine value : factory.getMachineList()) {
+            if (Objects.equals(value.getNameOnly(), getName()) && value instanceof IBreakable) {
+                ((IBreakable) factory.getMachineList().get(i)).repair();
 
-                i++;
+                done = true;
+                break;
             }
 
-            out.println("Stroj " + machine.getName() + " byl opraven");
-        } else {
-            out.println("Tento stroj nelze opravit");
+            i++;
         }
+
+        if (done)
+            out.println("Stroj " + getName() + " byl opraven");
+        else
+            out.println("Stroj nelze opravit");
     }
 
     public String getName() {

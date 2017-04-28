@@ -19,23 +19,24 @@ public class BreakMachine extends Function {
 
     @Override
     public void run() {
-        Machine machine = factory.getMachineByName(name);
+        int i = 0;
+        boolean done = false;
 
-        if (machine instanceof IBreakable && !((IBreakable) machine).IsBroken()) {
-            int i = 0;
-            for (Machine value : factory.getMachineList()) {
-                if (Objects.equals(value.getName(), machine.getName())) {
-                    ((IBreakable) factory.getMachineList().get(i)).breakUp();
-                    break;
-                }
+        for (Machine value : factory.getMachineList()) {
+            if (Objects.equals(value.getName(), getName()) && value instanceof IBreakable) {
+                ((IBreakable) factory.getMachineList().get(i)).breakUp();
 
-                i++;
+                done = true;
+                break;
             }
 
-            out.println("Stroj " + machine.getName() + " byl rozmrdan");
-        } else {
-            out.println("Tento stroj se nemuze rozbit");
+            i++;
         }
+
+        if (done)
+            out.println("Stroj " + getName() + " byl rozmrdan");
+        else
+            out.println("Stroj nelze rozbit");
     }
 
     public String getName() {

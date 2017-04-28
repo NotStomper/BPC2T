@@ -8,6 +8,7 @@ public abstract class Machine {
     private int Capacity;
     private String Name;
     private String Type;
+    private String nameOnly;
 
     Machine(String name, int energy, int capacity, String type) {
         this.setName(name);
@@ -18,7 +19,7 @@ public abstract class Machine {
 
     public abstract String getMachineType();
 
-    public int getEnergyPerComponent() {
+    public int getEnergy() {
         return EnergyPerComponent;
     }
 
@@ -52,5 +53,9 @@ public abstract class Machine {
     @Override
     public String toString() {
         return "Machine " + Type + " ("  + Name + ")";
+    }
+
+    public String getNameOnly() {
+        return Name;
     }
 }

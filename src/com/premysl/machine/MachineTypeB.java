@@ -7,7 +7,7 @@ public class MachineTypeB extends Machine implements IBreakable, ICanCreateNails
     private static final int Capacity = 50;
     private static final int DefaultCapacityNails = 0;
     private static final String Type = "B";
-    private static final int Energy = Capacity - DefaultCapacityNails;
+    private static final int Energy = 3;
 
     private boolean BrokenValue = false;
     private int EnergyNails;

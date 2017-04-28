@@ -2,6 +2,8 @@ package com.premysl;
 
 import com.premysl.functions.*;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -9,10 +11,12 @@ import static java.lang.System.out;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Factory factory = new Factory();
+        factory.setFilename("data.txt");
+
         Scanner reader = new Scanner(System.in);
-        Function object = null;
+        Function object;
 
         while (true) {
             out.print("Zadejte prikaz: ");
@@ -22,7 +26,7 @@ public class Main {
                 object = new Help();
             } else if (input.startsWith("sw ")) {
                 String[] values = input.split(" ");
-                int type =  Integer.parseInt(values[1]);
+                int type = Integer.parseInt(values[1]);
                 String amount = values[2];
 
                 object = new SetWork(type, amount);
@@ -51,6 +55,12 @@ public class Main {
                 String name = values[1];
 
                 object = new RepairMachine(name);
+            } else if (Objects.equals(input, "save")) {
+                object = new Save();
+            } else if (Objects.equals(input, "load")) {
+                object = new Load();
+            } else if (Objects.equals(input, "ge")) {
+                object = new GetEnergy();
             } else if (Objects.equals(input, "exit")) {
                 break;
             } else {
@@ -59,6 +69,8 @@ public class Main {
 
             object.setFactory(factory);
             object.run();
+
+            Optimizer.optimize(factory);
         }
     }
 }
