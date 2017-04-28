@@ -16,6 +16,8 @@ public abstract class Machine {
         this.setType(type);
     }
 
+    public abstract String getMachineType();
+
     public int getEnergyPerComponent() {
         return EnergyPerComponent;
     }
@@ -33,6 +35,9 @@ public abstract class Machine {
     }
 
     public String getName() {
+        if (this instanceof IBreakable && ((IBreakable)this).IsBroken())
+            return Name + " (rozbity)";
+
         return Name;
     }
 

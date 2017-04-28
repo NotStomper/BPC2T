@@ -6,24 +6,22 @@ import com.premysl.machine.MachineTypeB;
 import com.premysl.machine.MachineTypeC;
 
 import java.util.ArrayList;
-
-enum MachineType {
-    A,
-    B,
-    C
-}
+import java.util.Objects;
 
 /**
  * Created by Premysl Lefler.
  */
-class Factory {
+public class Factory {
     private ArrayList<Machine> MachineList;
+    private int componentsPerHour;
+    private int nailsPerHour;
 
     Factory() {
         MachineList = new ArrayList<>();
+        setComponentsPerHour(0);
     }
 
-    void add(String name, MachineType m) {
+    public void add(String name, MachineType m) {
         Machine item = null;
 
         if (m == MachineType.A)
@@ -36,7 +34,7 @@ class Factory {
         MachineList.add(item);
     }
 
-    String getListString() {
+    public String getListString() {
         StringBuilder result = new StringBuilder();
 
         for(Machine item: MachineList) {
@@ -45,4 +43,46 @@ class Factory {
 
         return result.toString();
     }
+
+    public Machine getMachineByName(String name) {
+        for (Machine machine : getMachineList()) {
+            if (Objects.equals(machine.getName(), name))
+                return machine;
+        }
+
+        return null;
+    }
+
+    /**
+     * Vratit soucasnou velikost vyroby
+     * @return int
+     */
+    public int getComponentsPerHour() {
+        return componentsPerHour;
+    }
+
+    /**
+     * Nastavit velikost vyroby
+     * @param componentsPerHour
+     */
+    public void setComponentsPerHour(int componentsPerHour) {
+        this.componentsPerHour = componentsPerHour;
+    }
+
+    public int getNailsPerHour() {
+        return nailsPerHour;
+    }
+
+    public void setNailsPerHour(int nailsPerHour) {
+        this.nailsPerHour = nailsPerHour;
+    }
+
+    public ArrayList<Machine> getMachineList() {
+        return MachineList;
+    }
+
+    public void setMachineList(ArrayList<Machine> machineList) {
+        MachineList = machineList;
+    }
+
 }

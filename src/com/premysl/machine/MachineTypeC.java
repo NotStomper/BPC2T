@@ -31,4 +31,9 @@ public class MachineTypeC extends Machine implements IBreakable {
     public void repair() {
         BrokenValue = false;
     }
+
+    @Override
+    public String getMachineType() {
+        return Type;
+    }
 }

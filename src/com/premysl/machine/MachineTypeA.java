@@ -14,4 +14,9 @@ public class MachineTypeA extends Machine {
     public MachineTypeA(String name) {
         super(name, Energy, Capacity, Type);
     }
+
+    @Override
+    public String getMachineType() {
+        return Type;
+    }
 }
