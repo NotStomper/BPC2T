@@ -34,16 +34,6 @@ public class Factory {
         MachineList.add(item);
     }
 
-    public String getListString() {
-        StringBuilder result = new StringBuilder();
-
-        for(Machine item: MachineList) {
-            result.append("\n").append(item.toString());
-        }
-
-        return result.toString();
-    }
-
     public Machine getMachineByName(String name) {
         for (Machine machine : getMachineList()) {
             if (Objects.equals(machine.getName(), name))
@@ -53,18 +43,10 @@ public class Factory {
         return null;
     }
 
-    /**
-     * Vratit soucasnou velikost vyroby
-     * @return int
-     */
     public int getComponentsPerHour() {
         return componentsPerHour;
     }
 
-    /**
-     * Nastavit velikost vyroby
-     * @param componentsPerHour
-     */
     public void setComponentsPerHour(int componentsPerHour) {
         this.componentsPerHour = componentsPerHour;
     }
