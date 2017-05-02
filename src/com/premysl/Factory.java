@@ -34,7 +34,8 @@ public class Factory {
             fileWriter.println(componentsPerHour + ";" + nailsPerHour);
 
             for (Machine machine : getMachineList()) {
-                StringBuilder lineBuilder = new StringBuilder(machine.getNameOnly() + ";" + machine.getMachineType());
+                StringBuilder lineBuilder = new StringBuilder(machine.getNameOnly() + ";" + machine.getMachineType()
+                    + ";" + machine.isActive());
 
                 if (machine instanceof IBreakable) {
                     lineBuilder.append(";").append(((IBreakable) machine).IsBroken());
@@ -67,13 +68,14 @@ public class Factory {
             MachineType type = MachineType.getFromString(values[1]);
 
             Machine machine = this.add(name, type);
+            machine.setActive(Objects.equals(values[2], "true"));
 
-            if (machine instanceof IBreakable && Objects.equals(values[2], "true")) {
+            if (machine instanceof IBreakable && Objects.equals(values[3], "true")) {
                 ((IBreakable) machine).breakUp();
             }
 
             if (machine instanceof MachineTypeB) {
-                ((MachineTypeB) machine).setNailCapacity(Integer.parseInt(values[3]));
+                ((MachineTypeB) machine).setNailCapacity(Integer.parseInt(values[4]));
             }
         }
     }

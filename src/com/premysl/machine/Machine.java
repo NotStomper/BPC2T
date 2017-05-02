@@ -8,7 +8,7 @@ public abstract class Machine {
     private int Capacity;
     private String Name;
     private String Type;
-    private String nameOnly;
+    private boolean Active;
 
     Machine(String name, int energy, int capacity, String type) {
         this.setName(name);
@@ -36,10 +36,15 @@ public abstract class Machine {
     }
 
     public String getName() {
-        if (this instanceof IBreakable && ((IBreakable)this).IsBroken())
-            return Name + " (rozbity)";
+        String result = Name;
 
-        return Name;
+        if (this instanceof IBreakable && ((IBreakable)this).IsBroken())
+            result += " (rozbity)";
+
+        if (isActive())
+            result += " - aktivni";
+
+        return result;
     }
 
     private void setName(String name) {
@@ -50,12 +55,15 @@ public abstract class Machine {
         Type = type;
     }
 
-    @Override
-    public String toString() {
-        return "Machine " + Type + " ("  + Name + ")";
-    }
-
     public String getNameOnly() {
         return Name;
+    }
+
+    public boolean isActive() {
+        return Active;
+    }
+
+    public void setActive(boolean active) {
+        Active = !(this instanceof IBreakable && ((IBreakable) this).IsBroken()) && active;
     }
 }

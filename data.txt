@@ -1,0 +1,5 @@
+50;90
+kokot;A;false
+zmrd;B;true;false;0
+premysl;C;false;false
+curak;B;false;false;0

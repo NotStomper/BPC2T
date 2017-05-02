@@ -2,7 +2,6 @@ package com.premysl;
 
 import com.premysl.functions.*;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 import java.util.Scanner;
